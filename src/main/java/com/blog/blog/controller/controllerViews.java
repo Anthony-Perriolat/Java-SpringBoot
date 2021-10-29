@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,6 +19,8 @@ import com.blog.blog.dao.ModelCarDaoImpl;
 import com.blog.blog.model.Car;
 import com.blog.blog.model.ModelCar;
 
+import form.CarForm;
+
 
 // Genere le rendu des fichier static
 @Controller
@@ -27,8 +30,11 @@ public class controllerViews {
 	@Value("${welcome.message}")
 	private String message;
 	
-	@Autowired 
-	private CarDao carDao;
+	@Autowired
+	private ModelCarDao modelCarFakerDao;
+	@Autowired
+	private CarDao carFakerDao;
+	
 	// Faker 
 	public ModelCarDaoImpl modelCarFaker = new ModelCarDaoImpl();
 	public CarDaoImpl carFaker = new CarDaoImpl(modelCarFaker);
@@ -60,19 +66,51 @@ public class controllerViews {
 		return "car";
 	}
 	@GetMapping(value = "/addCar")
-	public String addCar() {
+	public String addCarView(Model model) {
+		CarForm carForm = new CarForm();
+		model.addAttribute("carForm", carForm);
 		return "addCar";
 	}
 	
 	
 	@PostMapping(value = "/storeCar")
 	public String storeCar(Model model, 
-		@ModelAttribute("storeCar") Car car) {
+			@ModelAttribute("storeCar") CarForm carFrom) {
+		Integer id = carFrom.getId();
+		String name = carFrom.getName();
+		ModelCar modelCar = modelCarFaker.findById(5);
+		String brand = "Unknow";
+		Integer color = carFrom.getColor();
 		
-		
-		
-		model.addAttribute("car", message);
-		return "car";
+		if (name != null && name.length() > 0 //
+				&& name != null && name.length() > 0) {
+			Car newCar = new Car(id, name, modelCar, brand, color);
+			// carFaker.getCarList().add(newCar);
+			carFaker.save(newCar);
+			return "redirect:/modelcarlist";
+		}
+
+		model.addAttribute("errorMessage", errorMessage);				
+		return "modelcar/5";
+	}
+	
+	@GetMapping(value = "/viewUpdate")
+	public String updateCarView(Model model, CarForm carFrom) {
+		CarForm carForm = new CarForm();
+		model.addAttribute("carForm", carForm);
+		return "updateCar";
+	}
+	
+	@PostMapping(value = "/carUpdate")
+	public String updateCar( @ModelAttribute("updateCar") Car car, Model model) {
+	    carFaker.update(car);
+	    return "redirect:/modelcarlist";
+	}
+	    
+	@GetMapping("/{id}/delete")
+	public String deleteCar(@PathVariable("id") Integer id, Model model) {
+		carFaker.delete(id);
+	    return "redirect:/index";
 	}
 }
 	

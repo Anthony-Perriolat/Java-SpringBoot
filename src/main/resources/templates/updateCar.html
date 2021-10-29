@@ -9,7 +9,7 @@
       
    </head>
    <body>
-      <h1>Create a Person:</h1>
+      <h1>Update a Person:</h1>
       
       <!--  
          In Thymeleaf the equivalent of
@@ -17,7 +17,7 @@
          would be @{/edit.html}         
          -->
          
-      <form th:action="@{/storeCar}"
+      <form th:action="@{/carUpdate}"
          th:object="${carForm}" method="POST">
          id:
          <input type="text" th:field="*{id}" />    
@@ -29,9 +29,9 @@
          <input type="text" th:field="*{brand}" />    
          <br/>
          Color:
-         <input type="text" th:field="*{color}" />     
+         <input type="number" th:field="*{color}" />     
          <br/>
-         <input type="submit" value="Create" />
+         <input type="submit" value="Update" />
       </form>
       
       <br/>

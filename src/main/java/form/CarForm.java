@@ -1,66 +1,81 @@
-package com.blog.blog.model;
+package form;
 
+import com.blog.blog.model.ModelCar;
 
-public class Car {
-	
+public class CarForm {
 	private int id;
 	private String name;
 	private ModelCar model;
 	private String brand;
 	private Integer color;
 	
-	
-	
-	
-	public Car(int id, String name, ModelCar model, String brand, Integer color) {
-		super();
+
+	public int getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(int id) {
 		this.id = id;
+	}
+
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+
+	public void setName(String name) {
 		this.name = name;
+	}
+
+
+
+
+	public ModelCar getModel() {
+		return model;
+	}
+
+
+
+
+	public void setModel(ModelCar model) {
 		this.model = model;
+	}
+
+
+
+
+	public String getBrand() {
+		return brand;
+	}
+
+
+
+
+	public void setBrand(String brand) {
 		this.brand = brand;
-		this.color = color;
 	}
-	
-	public Car() {
-		// TODO Auto-generated constructor stub
-	}
+
+
+
 
 	public Integer getColor() {
 		return color;
 	}
 
+
+
+
 	public void setColor(Integer color) {
 		this.color = color;
 	}
-
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public ModelCar getModel() {
-		return model;
-	}
-	public int getIdModel() {
-		return model.getId();
-	}
-	public void setModel(ModelCar model) {
-		this.model = model;
-	}
-	public String getBrand() {
-		return brand;
-	}
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
 	
 	
 }
