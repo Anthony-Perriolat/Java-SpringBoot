@@ -59,17 +59,19 @@ public class CarDaoImpl implements CarDao {
 		return newCar;
 	}
 
-	public void update(Car updateCar) {
+	public Car update(Car updateCar) {
 		for (int i = 0; i < carList.size(); i++) {
 			if (carList.get(i).getId() == updateCar.getId()) {
 				carList.set(i, updateCar);
+				return updateCar;
 			}
 		}
+		return null;
 	}
 	
-	public void delete(int id) {
+	public boolean delete(int id) {
 		Object tmp = carList.stream().filter(p -> p.getId() == id);
-		carList.remove(tmp);
+		return carList.remove(tmp);
 		
 	}
 
