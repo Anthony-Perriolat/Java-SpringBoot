@@ -102,13 +102,13 @@ public class controllerViews {
 	}
 	
 	@PostMapping(value = "/carUpdate")
-	public String updateCar( @ModelAttribute("updateCar") Car car, Model model) {
+	public String updateCar(@ModelAttribute("updateCar") Car car) {
 	    carFaker.update(car);
 	    return "redirect:/modelcarlist";
 	}
 	    
 	@GetMapping("/{id}/delete")
-	public String deleteCar(@PathVariable("id") Integer id, Model model) {
+	public String deleteCar(@PathVariable("id") Integer id) {
 		carFaker.delete(id);
 	    return "redirect:/index";
 	}

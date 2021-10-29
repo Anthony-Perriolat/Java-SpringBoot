@@ -59,19 +59,25 @@ public class CarDaoImpl implements CarDao {
 		return newCar;
 	}
 
-	public void update(Car updateCar) {
+	public Car update(Car updateCar) {
 		for (int i = 0; i < carList.size(); i++) {
-			if (carList.get(i).getId() == updateCar.getId()) {
-				carList.set(i, updateCar);
+			if (this.carList.get(i).getId() == updateCar.getId()) {
+				Car obj = carList.get(i);
+				obj.setName(updateCar.getName());
+				obj.setBrand(updateCar.getBrand());
+				obj.setColor(updateCar.getColor());
+				return obj;
 			}
 		}
+		return null;
 	}
 	
 	public void delete(int id) {
-		Object tmp = carList.stream().filter(p -> p.getId() == id);
-		carList.remove(tmp);
+				this.carList.remove(id);
+			
+			}
 		
-	}
+	
 
 	@Override
 	public List<Car> findByCatAll() {
