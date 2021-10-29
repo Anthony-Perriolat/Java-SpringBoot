@@ -26,9 +26,6 @@ import form.CarForm;
 @Controller
 public class controllerViews {
 	
-	// Injectez (inject) via application.properties.
-	@Value("${welcome.message}")
-	private String message;
 	
 	@Autowired
 	private ModelCarDao modelCarFakerDao;
