@@ -52,7 +52,7 @@ public class controllerAPI {
 		return carFaker.findById(id);
 	}	
 	
-	@PostMapping(value = "/storeCar")
+	@PostMapping(value = "/car")
 	public Car storeCar(@RequestBody CarForm carFrom) {
 		Integer id = carFrom.getId();
 		String name = carFrom.getName();
@@ -65,12 +65,12 @@ public class controllerAPI {
 		return newCar;
 	}
 	
-	@PutMapping(value = "/carUpdate")
+	@PutMapping(value = "/car")
 	public Car updateCar(@RequestBody Car car) {
 	    return carFaker.update(car);
 	}
 	    
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping(value = "/car/{id}")
 	public boolean deleteCar(@PathVariable("id") int id) {
 	    return carFaker.delete(id);
 	}
